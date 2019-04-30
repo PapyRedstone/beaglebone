@@ -24,7 +24,7 @@ unsigned int etatPB(){
   FILE *file = NULL;
   unsigned int etat;
   file = fopen("/sys/class/gpio/gpio48/value", "r");
-  fscanf(file, "%d", etat);
+  fscanf(file, "%d", &etat);
   fclose(file);
   return etat;
 }

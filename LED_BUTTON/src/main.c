@@ -3,7 +3,7 @@
 int main(void){
 
   while(1){
-    if(etatPB()){
+    if(!etatPB()){
       allumeLED();
     }else{
       eteintLED();

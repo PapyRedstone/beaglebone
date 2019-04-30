@@ -2,7 +2,7 @@
 
 #clear gpio
 clear(){
-    for i in {1..320}
+    for i in {0..320}
     do
 	echo $i > /sys/class/gpio/unexport
     done
@@ -25,3 +25,8 @@ setOutput(){
 clear
 setInput 1 16
 setOutput 1 18
+
+setOutput 0 3
+setOutput 1 28
+echo 0 > /sys/class/gpio/gpio3/value
+echo 0 > /sys/class/gpio/gpio60/value
