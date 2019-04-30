@@ -3,7 +3,7 @@ CFLAGS = -g -pthread #-Wall -pedantic -std=c++17 -O3
 #UNIT = -ftest-coverage -fprofile-arcs
 GCC = ~/gcc-linaro-6.5.0-2018.12-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-gcc
 
-TARGET = LEDveRtE
+TARGET = ClignoThread
 
 SRC = $(wildcard src/*.c)
 NOM = $(basename $(notdir $(SRC)))
