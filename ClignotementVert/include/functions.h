@@ -3,4 +3,5 @@
 // Protos
 void allumeLED();
 void eteintLED();
+void permutLED();
 #endif

@@ -6,12 +6,7 @@ int main(void){
   bool etatLed = 0;
   
   while(1){
-    if(etatLed){
-      allumeLED();
-    }else{
-      eteintLED();
-    }
-    etatLed = !etatLed;
-    usleep(500);
+    permutLED();
+    usleep(500000);
   }
 }
