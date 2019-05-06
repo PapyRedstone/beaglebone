@@ -22,11 +22,14 @@ setOutput(){
     echo out > /sys/class/gpio/gpio$gpio/direction
 }
 
-echo cape-bone-iio > /sys/devices/bone_capemgr.9/slots
+echo am33xx_pwm > /sys/devices/bone_capemgr.9/slots
+echo bone_pwm_P9_14 > /sys/devices/bone_capemgr.9/slots
+echo 1800 > /sys/devices/ocp.3/pwm_test_P9_14.15/period
+echo 0 > /sys/devices/ocp.3/pwm_test_P9_14.15/polarity
 clear
 setOutput 1 18
 setOutput 0 3
 setOutput 1 28
 echo 0 > /sys/class/gpio/gpio3/value
 echo 0 > /sys/class/gpio/gpio60/value
-echo 0 > /sys/class/gpio/gpio50/value
+
