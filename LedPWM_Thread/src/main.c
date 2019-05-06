@@ -1,5 +1,4 @@
 #include "functions.h"
-#include <unistd.h>
 #define bool int
 
 int main(void){
@@ -7,7 +6,14 @@ int main(void){
   fprintf(file, "%d", 1);
   fflush(file);
   fclose(file);
-  while(1){
-    mod_PWM(read_ADC());
-  }
+
+  pthread_t tRed, tGreen, tBlue;
+
+  pthread_create(&tRed, NULL,   red,   NULL);
+  pthread_create(&tGreen, NULL, green, NULL);
+  pthread_create(&tBlue, NULL,  blue,  NULL);
+
+  pthread_join(tRed,   NULL);
+  pthread_join(tGreen, NULL);
+  pthread_join(tBlue,  NULL);
 }

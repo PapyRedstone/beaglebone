@@ -1,9 +1,9 @@
 CFLAGS = -g #-Wall -pedantic -std=c++17 -O3
-#LDFLAGS = -pthread -lsfml-network -lsfml-graphics -lsfml-window -lsfml-system
+LDFLAGS = -pthread #-lsfml-network -lsfml-graphics -lsfml-window -lsfml-system
 #UNIT = -ftest-coverage -fprofile-arcs
 GCC = ~/gcc-linaro-6.5.0-2018.12-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-gcc
 
-TARGET = LedPWM
+TARGET = LedPWMThread
 
 SRC = $(wildcard src/*.c)
 NOM = $(basename $(notdir $(SRC)))
