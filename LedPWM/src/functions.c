@@ -1,6 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+#include "functions.h"
 
 void setLEDetat(char x, char y, char value){
   char fileName[29];
@@ -22,6 +20,6 @@ int read_ADC(){
 void mod_PWM(int value){
   FILE *file = fopen("/sys/devices/ocp.3/pwm_test_P9_14.15/duty", "w");
   fprintf(file, "%d", value);
-  fflsuh(file);
+  fflush(file);
   fclose(file);
 }
