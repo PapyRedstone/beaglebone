@@ -17,3 +17,10 @@ void control_RVB(char R, char V, char B){
   setLEDetat(0, 3, B);
 }
 
+int read_ADC(){
+  unsigned int etat;
+  FILE *file = fopen("/sys/device/ocp.3/helper.14/AIN3", "r");
+  fscanf(file, "%d", &etat);
+  fclose(file);
+  return etat;
+}
