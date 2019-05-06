@@ -3,14 +3,11 @@
 #define bool int
 
 int main(void){
+  FILE *file = fopen("/sys/devices/ocp.3/pwm_test_P9_14.15/run", "w");
+  fprintf(file, "%d", 1);
+  fflsuh(file);
+  fclose(file);
   while(1){
-    int val = read_ADC();
-    if(val < 1800*1/3){
-      control_RVB(1,0,0);
-    }else if(val < 1800*2/3){
-      control_RVB(0,1,0);
-    }else{
-      control_RVB(0,0,1);
-    }
+    mod_PWM(read_ADC());
   }
 }
