@@ -1,14 +1,5 @@
 #include "functions.h"
 
-void setLEDetat(char x, char y, char value){
-  char fileName[29];
-  sprintf(fileName, "/sys/class/gpio/gpio%d/value", x*32+y);
-  FILE *file = fopen(fileName, "w");
-  fprintf(file, "%d", value);
-  fflush(file);
-  fclose(file);
-}
-
 int read_ADC(){
   unsigned int etat;
   FILE *file = fopen("/sys/devices/ocp.3/helper.14/AIN3", "r");
