@@ -1,6 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+#include "functions.h"
 
 void allumeLED(){
   FILE *file = fopen("/sys/class/gpio/gpio60/value", "w");
@@ -26,4 +24,16 @@ void permutLED(){
   }else{
     allumeLED();
   }
+}
+
+void *clignot(void *ptr)
+{
+  printf("Nous sommes dans le thread.\n");
+  while(1){
+    permutLED();
+    usleep(500000);
+  }
+  /* Pour enlever le warning */
+  (void) ptr;
+  pthread_exit(NULL);
 }

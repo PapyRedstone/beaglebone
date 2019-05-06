@@ -1,12 +1,15 @@
 #include "functions.h"
-#include <unistd.h>
+
 #define bool int
 
 int main(void){
-  bool etatLed = 0;
+
+  pthread_t thread1;
   
-  while(1){
-    permutLED();
-    usleep(500000);
-  }
+  if(pthread_create(&thread1, NULL, clignot, NULL) == -1) {
+	  perror("pthread_create");
+	  return -1;
+    }
+  
+  while(1){}
 }
