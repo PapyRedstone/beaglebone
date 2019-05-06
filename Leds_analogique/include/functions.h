@@ -1,6 +1,6 @@
 #ifndef _FUNCTIONS_H
 #define _FUNCTIONS_H
 // Protos
-void allumeLED(int x, int y);
-void eteintLED(int x, int y);
+void setLEDetat(char x, char y, char value);
+void contol_RVB(char R, char V, char B);
 #endif
