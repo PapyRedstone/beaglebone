@@ -22,11 +22,11 @@ setOutput(){
     echo out > /sys/class/gpio/gpio$gpio/direction
 }
 
+echo cape-bone-iio > /sys/devices/bone_capemgr.9/slots
 clear
-setInput 1 16
 setOutput 1 18
-
 setOutput 0 3
 setOutput 1 28
 echo 0 > /sys/class/gpio/gpio3/value
 echo 0 > /sys/class/gpio/gpio60/value
+echo 0 > /sys/class/gpio/gpio50/value
