@@ -32,7 +32,8 @@ void *red(void *ptr){
     while(!pthread_mutex_lock(&adcMutex));
     adc = read_ADC();
     mod_PWM(adc);
-    pthread_mutex_lock(&adcMutex);
+    pthread_mutex_unlock(&adcMutex);
+    printf("RED\n");
   }
   (void) ptr;
   pthread_exit(NULL);
@@ -42,11 +43,12 @@ void *green(void *ptr){
   while (1){
     while(!pthread_mutex_lock(&adcMutex));
     int tmp = adc;
-    pthread_mutex_lock(&adcMutex);
+    pthread_mutex_unlock(&adcMutex);
     setLEDetat(1,28,1);
     usleep(tmp);
     setLEDetat(1,28,0);
     usleep(1800-tmp);
+    printf("GREEN\n");
   }
   (void) ptr;
   pthread_exit(NULL);
@@ -56,11 +58,12 @@ void *blue(void *ptr){
   while (1){
     while(!pthread_mutex_lock(&adcMutex));
     int tmp = adc;
-    pthread_mutex_lock(&adcMutex);
+    pthread_mutex_unlock(&adcMutex);
     setLEDetat(0,3,1);
     usleep(tmp);
     setLEDetat(0,3,0);
     usleep(1800-tmp);
+    printf("BLUE");
   }
   (void) ptr;
   pthread_exit(NULL);
