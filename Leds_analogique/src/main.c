@@ -4,7 +4,7 @@
 
 int main(void){
   while(1){
-    int val = readADC();
+    int val = read_ADC();
     if(val < 1800*2/3){
       control_RVB(1,0,0);
     }else if(val < 1800*1/3){
