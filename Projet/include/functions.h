@@ -12,3 +12,8 @@ typedef int bool;
 void selection();
 void commande_radio(char tube, char *etat);
 void GPIO_1to0(int delay1, int delay0);
+
+FILE* p9_16 = NULL;
+char* etatRVB = NULL;
+
+
