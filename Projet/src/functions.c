@@ -79,7 +79,5 @@ void selection(){
 
   if(!etatPB()){
     commande_radio(choixRVB, etatRVB);
-  }else{
-    eteintLED();
   }
 }
