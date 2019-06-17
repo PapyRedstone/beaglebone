@@ -1,8 +1,10 @@
 #include "functions.h"
 
+void selection(){}
+
 void commande_radio(char tube, char* etat){
   switch(tube){
-  case 'V':
+  case 'R':
     if(*etat){//eteint
       printf("Le tube rouge est eteint\n");
     }else{//allume
@@ -16,11 +18,11 @@ void commande_radio(char tube, char* etat){
       printf("Le tube bleu est allume\n");
     }
     break;
-  case 'B':
+  case 'V':
     if(*etat){//eteint
-      printf("Le tube bleu est eteint\n");
+      printf("Le tube verte est eteint\n");
     }else{//allume
-      printf("Le tube bleu est allume\n");
+      printf("Le tube verte est allume\n");
     }
     break;
   default:
