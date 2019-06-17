@@ -35,6 +35,7 @@ unsigned int etatPB(){
 void commande_radio(char tube, char* etat){
   switch(tube){
   case 'R':
+    etat[0] = !etat[0];
     if(etat[0]){//eteint
       printf("Le tube rouge est eteint\n");
     }else{//allume
@@ -42,6 +43,7 @@ void commande_radio(char tube, char* etat){
     }
     break;
   case 'B':
+    etat[2] = !etat[2];
     if(etat[2]){//eteint
       printf("Le tube bleu est eteint\n");
     }else{//allume
@@ -49,6 +51,7 @@ void commande_radio(char tube, char* etat){
     }
     break;
   case 'V':
+    etat[1] = !etat[1];
     if(etat[1]){//eteint
       printf("Le tube verte est eteint\n");
     }else{//allume
@@ -62,7 +65,10 @@ void commande_radio(char tube, char* etat){
 }
 
 void selection(){
-  static char* etatRVB = malloc(sizeof(char)*3);
+  static char* etatRVB = NULL;
+  if (!etatRVB){
+    etatRVB = malloc(sizeof(char)*3);
+  }
   char choixRVB;
   int adc = read_ADC();
   
