@@ -14,7 +14,7 @@ void setLEDetat(char x, char y, char value){
 
 int read_ADC(){
   unsigned int etat;
-  FILE *file = fopen("/sys/devices/ocp.3/helper.14/AIN3", "r");
+  FILE *file = fopen("/sys/devices/ocp.3/helper.14/AIN3", "r"); //valeurs potar
   fscanf(file, "%d", &etat);
   fclose(file);
   return etat;
