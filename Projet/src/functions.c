@@ -66,6 +66,7 @@ void commande_radio(char tube, char* etat){
 
 void selection(){
   static char* etatRVB = NULL;
+  static bool boutonAppuie = false;
   if (!etatRVB){
     etatRVB = malloc(sizeof(char)*3);
   }
@@ -77,13 +78,18 @@ void selection(){
     choixRVB = 'R';
   }else if(adc < 1800*2/3){
     control_RVB(0,1,0);
-    choixRVB = 'v';
+    choixRVB = 'V';
   }else{
     control_RVB(0,0,1);
     choixRVB = 'B';
   }
 
   if(!etatPB()){
-    commande_radio(choixRVB, etatRVB);
+    if(!boutonAppuie){
+      commande_radio(choixRVB, etatRVB);
+    }
+    boutonAppuie = true;
+  }else{
+    boutonAppuie = false;
   }
 }
