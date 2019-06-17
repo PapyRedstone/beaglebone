@@ -130,3 +130,74 @@ void trans_data_433MHz(char data){
     printf("ERROR: bad transmit data");
   }
 }
+
+void trans_tram_433Mhz(char maison, char objet, char activation, char repetition){
+  char i;
+  for(i = 0 ; i < repetition ; i++){
+    switch (maison)
+    {
+    case 'A':
+        trans_data_433MHz('1');
+        trans_data_433MHz('0');
+        trans_data_433MHz('0');
+        trans_data_433MHz('0');
+      break;
+
+    case 'B':
+        trans_data_433MHz('0');
+        trans_data_433MHz('1');
+        trans_data_433MHz('0');
+        trans_data_433MHz('0');
+      break;
+
+    case 'C':
+        trans_data_433MHz('0');
+        trans_data_433MHz('0');
+        trans_data_433MHz('1');
+        trans_data_433MHz('0');
+      break;
+
+    case 'D':
+        trans_data_433MHz('0');
+        trans_data_433MHz('0');
+        trans_data_433MHz('0');
+        trans_data_433MHz('1');
+      break;
+    
+    default:
+      break;
+    }
+
+    switch (objet)
+    {
+    case 1:
+        trans_data_433MHz('1');
+        trans_data_433MHz('0');
+        trans_data_433MHz('0');
+      break;
+
+    case 2:
+        trans_data_433MHz('0');
+        trans_data_433MHz('1');
+        trans_data_433MHz('0');
+      break;
+
+    case 3:
+        trans_data_433MHz('0');
+        trans_data_433MHz('0');
+        trans_data_433MHz('1');
+      break;
+    
+    default:
+      break;
+    }
+
+    trans_data_433MHz('0');
+    trans_data_433MHz('1');
+    trans_data_433MHz('1');
+    trans_data_433MHz('1');
+
+    trans_data_433MHz(activation + 48);
+    trans_data_433MHz('S');
+  }
+}
