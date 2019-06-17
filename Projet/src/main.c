@@ -3,7 +3,9 @@
 int main(int argc, char ** argv){
   while(1){
     //selection();
-    GPIO_1to0(tREF, tREF3);
+    trans_data_433MHz('1');
+    trans_data_433MHz('0');
+    trans_data_433MHz('S');
   }
   if(p9_16){
     free(p9_16);
