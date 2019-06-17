@@ -108,3 +108,25 @@ void GPIO_1to0(int delay1, int delay0){
   fflush(p9_16);
   usleep(delay0 - 80);
 }
+
+void trans_data_433MHz(char data){
+  switch(data){
+  case '0':
+    GPIO_1to0(tREF, tREF3);
+    GPIO_1to0(tREF3, tREF);
+    break;
+  case '1':
+    GPIO_1to0(tREF, tREF3);
+    GPIO_1to0(tREF, tREF3);
+    break;
+  case '2':
+    GPIO_1to0(tREF3, tREF);
+    GPIO_1to0(tREF3, tREF);
+    break;
+  case 'S':
+    GPIO_1to0(tREF, tREF32);
+    break;
+  default:
+    printf("ERROR: bad transmit data");
+  }
+}

@@ -26,11 +26,11 @@ clear:
 	rm obj/*.o *.gch -f
 
 run:
-	scp $(TARGET) init_$(TARGET).sh root@172.17.12.100:/root/
-	ssh root@172.17.12.100 'chmod ugo+x /root/$(TARGET) && chmod ugo+x /root/init_$(TARGET).sh && /root/init_$(TARGET).sh'
+	scp $(TARGET) init_$(TARGET).sh root@172.17.12.103:/root/
+	ssh root@172.17.12.103 'chmod ugo+x /root/$(TARGET) && chmod ugo+x /root/init_$(TARGET).sh && /root/init_$(TARGET).sh'
 
 cleanRemote:
-	ssh root@172.17.12.100 'rm /root/$(TARGET)'
+	ssh root@172.17.12.103 'rm /root/$(TARGET)'
 
 install:
 	cd ~
