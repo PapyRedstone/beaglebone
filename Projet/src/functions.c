@@ -94,13 +94,17 @@ void selection(){
 }
 
 void GPIO_1to0(int delay1, int delay0){
+  struct timespec start, current;
+  unsigned long endNano, currentNano;
+
   if(!p9_16){
     p9_16 = fopen("/sys/class/gpio/gpio51/value", "w");
   }
   fprintf(p9_16, "%d", 1);
   fflush(p9_16);
-  usleep(delay1);
+  usleep(delay1 - 75);
+    
   fprintf(p9_16, "%d", 0);
   fflush(p9_16);
-  usleep(delay0);
+  usleep(delay0 - 80);
 }
