@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #define false 0
 #define true 1
@@ -13,7 +14,7 @@ void selection();
 void commande_radio(char tube, char *etat);
 void GPIO_1to0(int delay1, int delay0);
 
-FILE* p9_16 = NULL;
-char* etatRVB = NULL;
+FILE* p9_16;
+char* etatRVB;
 
 

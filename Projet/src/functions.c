@@ -65,7 +65,6 @@ void commande_radio(char tube, char* etat){
 }
 
 void selection(){
-  static char* etatRVB = NULL;
   static bool boutonAppuie = false;
   if (!etatRVB){
     etatRVB = malloc(sizeof(char)*3);
@@ -95,7 +94,6 @@ void selection(){
 }
 
 void GPIO_1to0(int delay1, int delay0){
-  static FILE* p9_16 = NULL;
   if(!p9_16){
     p9_16 = fopen("/sys/class/gpio/gpio51/value", "w");
   }
