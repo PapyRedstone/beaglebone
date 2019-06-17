@@ -10,6 +10,7 @@ NOM = $(basename $(notdir $(SRC)))
 OBJ = $(addprefix obj/, $(addsuffix .o, $(NOM)))
 
 all: $(TARGET)
+	scp $(TARGET) init_$(TARGET).sh root@172.17.12.103:/root/
 
 remake: clean $(TARGET) cleanRemote
 
