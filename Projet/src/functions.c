@@ -38,9 +38,11 @@ void commande_radio(char tube, char* etat){
     etat[0] = !etat[0];
     if(etat[0]){//eteint
       printf("Le tube rouge est eteint\n");
+      
     }else{//allume
       printf("Le tube rouge est allume\n");
     }
+    trans_trame_433MHz('D', 1, etat[0], 5);
     break;
   case 'B':
     etat[2] = !etat[2];
@@ -49,6 +51,7 @@ void commande_radio(char tube, char* etat){
     }else{//allume
       printf("Le tube bleu est allume\n");
     }
+    trans_trame_433MHz('B', 3, etat[2], 5);
     break;
   case 'V':
     etat[1] = !etat[1];
@@ -57,6 +60,7 @@ void commande_radio(char tube, char* etat){
     }else{//allume
       printf("Le tube verte est allume\n");
     }
+    trans_trame_433MHz('C', 2, etat[1], 5);
     break;
   default:
     printf("ERROR: Wrong tube type received\n");
