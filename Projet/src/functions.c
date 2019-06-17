@@ -73,10 +73,10 @@ void selection(){
   char choixRVB;
   int adc = read_ADC();
   
-  if(adc < 1800*1/3){
+  if(adc < 1796*1/3){
     control_RVB(1,0,0);
     choixRVB = 'R';
-  }else if(adc < 1800*2/3){
+  }else if(adc < 1796*2/3){
     control_RVB(0,1,0);
     choixRVB = 'V';
   }else{
