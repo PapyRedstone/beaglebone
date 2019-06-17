@@ -2,10 +2,7 @@
 
 int main(int argc, char ** argv){
   while(1){
-    //selection();
-    trans_data_433MHz('1');
-    trans_data_433MHz('0');
-    trans_data_433MHz('S');
+    selection();
   }
   if(p9_16){
     free(p9_16);

@@ -15,7 +15,7 @@ void selection();
 void commande_radio(char tube, char *etat);
 void GPIO_1to0(int delay1, int delay0);
 void trans_data_433MHz(char data);
-
+void trans_trame_433MHz(char maison, char objet, char activation, char repetition);
 FILE* p9_16;
 char* etatRVB;
 
