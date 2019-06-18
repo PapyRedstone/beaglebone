@@ -1,18 +1,36 @@
 #include "functions.h"
 
-void setLEDetat(char x, char y, char value){
+void setLEDetat(char x, char y, char value, char etatTube){
+  static unsigned int counter = 0;
   char fileName[29];
   sprintf(fileName, "/sys/class/gpio/gpio%d/value", x*32+y);
   FILE *file = fopen(fileName, "w");
-  fprintf(file, "%d", value);
+  if(value){
+    if(!etatTube){
+      fprintf(file, "%d", 1);
+    }else{
+      if(counter < 3){
+        fprintf(file, "%d", 0);
+      }else if(counter <= 9){
+        fprintf(file, "%d", 1);
+      }
+      counter++;
+      if(counter > 9){
+        counter = 0;
+      }
+    }
+  }else{
+    fprintf(file, "%d", 0);
+  }
+
   fflush(file);
   fclose(file);
 }
 
 void control_RVB(char R, char V, char B){
-  setLEDetat(1,18, R);
-  setLEDetat(1,28, V);
-  setLEDetat(0, 3, B);
+  setLEDetat(1,18, R, etatRVB[0]);
+  setLEDetat(1,28, V, etatRVB[1]);
+  setLEDetat(0, 3, B, etatRVB[2]);
 }
 
 int read_ADC(){
