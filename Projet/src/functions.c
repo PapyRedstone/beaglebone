@@ -255,10 +255,18 @@ void trans_trame_433MHz(char maison, char objet, char activation, char repetitio
 
 void trans_trame2_433MHz(char maison, char objet, char activation, char repetition){
   char i;
+
+  char *m = decimalNumberToBinaryString(maison-'A');
+  char *o = decimalNumberToBinaryString(objet);
   for(i = 0 ; i < repetition ; i++){
-
     
+    for(char j=0; j<; j++){
+      trans_data_433MHz(m[j]);
+    }
 
+    for(char j=0; j<; j++){
+      trans_data_433MHz(o[j]);
+    }
 
     trans_data_433MHz('1');
     trans_data_433MHz('1');
