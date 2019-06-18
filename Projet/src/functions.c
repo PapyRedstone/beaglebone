@@ -233,3 +233,19 @@ void trans_trame_433MHz(char maison, char objet, char activation, char repetitio
     trans_data_433MHz('S');
   }
 }
+
+void trans_trame2_433MHz(char maison, char objet, char activation, char repetition){
+  char i;
+  for(i = 0 ; i < repetition ; i++){
+
+    
+
+
+    trans_data_433MHz('1');
+    trans_data_433MHz('1');
+    trans_data_433MHz('1');
+
+    trans_data_433MHz(activation + 48);
+    trans_data_433MHz('S');
+  }
+}
