@@ -251,32 +251,21 @@ void trans_trame_433MHz(char maison, char objet, char activation, char repetitio
     trans_data_433MHz('S');
   }
 }
-<<<<<<< HEAD
 char* decimalNumberToBinaryString(unsigned int number){
   char binary[4];
-  binary[3] = number >> 3 + 48;
-  binary[2] = number >> 2 &0x1 + 48;
-  binary[1] = number >> 1 &0x1 + 48;
-  binary[0] = number &0x1 + 48;
+  binary[0] = number >> 3 + 48;
+  binary[1] = number >> 2 &0x1 + 48;
+  binary[2] = number >> 1 &0x1 + 48;
+  binary[3] = number &0x1 + 48;
   return binary;
 }
 
-}
-=======
-
-void trans_trame2_433MHz(char maison, char objet, char activation, char repetition){
-  char i;
-  for(i = 0 ; i < repetition ; i++){
-
-    
-
-
-    trans_data_433MHz('1');
-    trans_data_433MHz('1');
-    trans_data_433MHz('1');
-
-    trans_data_433MHz(activation + 48);
-    trans_data_433MHz('S');
+void bruteForce(){
+  char i, j;
+  for(i = 'A' ; i < 'P' ; i++){
+    for(j = 0 ; j < 15 ; j++){
+      trans_trame2_433MHz(i, j, 0, 10);
+    }
   }
 }
->>>>>>> 90773d63eaca9849881069b21c96a5f11785c00d
+
