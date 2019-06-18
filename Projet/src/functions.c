@@ -177,7 +177,7 @@ void trans_data_433MHz(char data){
     GPIO_1to0(tREF, tREF32);
     break;
   default:
-    printf("ERROR: bad transmit data : %c\n", data);
+    printf("ERROR: bad transmit data : %d\n", atoi(&data));
   }
 }
 
@@ -252,22 +252,28 @@ void trans_trame_433MHz(char maison, char objet, char activation, char repetitio
   }
 }
 
-char* decimalNumberToBinaryString(unsigned int number){
+char* decimalNumberToBinaryString(char number){
   char *binary = malloc(sizeof(char)*4);
-  binary[0] = number >> 3      + 48;
-  binary[1] = number >> 2 &0x1 + 48;
-  binary[2] = number >> 1 &0x1 + 48;
-  binary[3] = number      &0x1 + 48;
+  binary[0] = ( number >> 3)        + 48;
+  binary[1] = ((number >> 2) & 0x1) + 48;
+  binary[2] = ((number >> 1) & 0x1) + 48;
+  binary[3] = ( number       & 0x1) + 48;
   return binary;
 }
 
 void bruteForce(){
   char i, j;
-  for(i = 'A' ; i < 'P' ; i++){
-    for(j = 0 ; j < 15 ; j++){
-      trans_trame2_433MHz(i, j, 0, 10);
-      printf("%c : %c\n", i, j);
-
+  
+  for(i = 'A' ; i <= 'P' ; i++){
+    for(j = 0 ; j < 16 ; j++){
+      if((i == 'B' && j == 8) ||
+	 (i == 'C' && j == 4) ||
+	 (i == 'E' && j == 2)){
+	continue;
+      }
+      printf("%c : %d\n", i, j);
+      trans_trame2_433MHz(i, j, 0, 1);
+      usleep(1e6);
     }
   }
 }
@@ -280,18 +286,16 @@ void trans_trame2_433MHz(char maison, char objet, char activation, char repetiti
   for(i = 0 ; i < repetition ; i++){
     
     for(char j=0; j<4; j++){
-      printf("%d  ",m[j]);
       trans_data_433MHz(m[j]);
     }
 
     for(char j=0; j<4; j++){
-      printf("%d  ",o[j]);
       trans_data_433MHz(o[j]);
     }
 
     trans_data_433MHz('1');
-    trans_data_433MHz('1');
-    trans_data_433MHz('1');
+    trans_data_433MHz('0');
+    trans_data_433MHz('0');
 
     trans_data_433MHz(activation + 48);
     trans_data_433MHz('S');
