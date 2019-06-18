@@ -9,13 +9,13 @@ void setLEDetat(char x, char y, char value, char etatTube){
     if(!etatTube){
       fprintf(file, "%d", 1);
     }else{
-      if(counter < 3){
-        fprintf(file, "%d", 0);
-      }else if(counter <= 9){
+      if(counter < 1){
         fprintf(file, "%d", 1);
+      }else{
+        fprintf(file, "%d", 0);
       }
       counter++;
-      if(counter > 9){
+      if(counter > 3){
         counter = 0;
       }
     }
@@ -46,7 +46,6 @@ unsigned int etatPB(){
   unsigned int etat;
   file = fopen("/sys/class/gpio/gpio48/value", "r");
   fscanf(file, "%d", &etat);
-  while()
   fclose(file);
   return etat;
 }
@@ -251,4 +250,14 @@ void trans_trame_433MHz(char maison, char objet, char activation, char repetitio
     trans_data_433MHz(activation + 48);
     trans_data_433MHz('S');
   }
+}
+char* decimalNumberToBinaryString(unsigned int number){
+  char binary[4];
+  binary[3] = number >> 3 + 48;
+  binary[2] = number >> 2 &0x1 + 48;
+  binary[1] = number >> 1 &0x1 + 48;
+  binary[0] = number &0x1 + 48;
+  return binary;
+}
+
 }
