@@ -45,15 +45,6 @@ void commande_radio(char tube, char* etat){
     }
     trans_trame_433MHz('D', 1, etat[0], 10);
     break;
-  case 'B':
-    etat[2] = !etat[2];
-    if(etat[2]){//eteint
-      printf("Le tube bleu est eteint\n");
-    }else{//allume
-      printf("Le tube bleu est allume\n");
-    }
-    trans_trame_433MHz('B', 3, etat[2], 10);
-    break;
   case 'V':
     etat[1] = !etat[1];
     if(etat[1]){//eteint
@@ -63,6 +54,15 @@ void commande_radio(char tube, char* etat){
     }
     trans_trame_433MHz('C', 2, etat[1], 10);
     break;
+  case 'B':
+    etat[2] = !etat[2];
+    if(etat[2]){//eteint
+      printf("Le tube bleu est eteint\n");
+    }else{//allume
+      printf("Le tube bleu est allume\n");
+    }
+    trans_trame_433MHz('B', 3, etat[2], 10);
+    break;
   default:
     printf("ERROR: Wrong tube type received\n");
     break;
@@ -71,9 +71,13 @@ void commande_radio(char tube, char* etat){
 
 void selection(){
   static bool boutonAppuie = false;
+  static time_t start = -1;
+  time_t end;
+  
   if (!etatRVB){
     etatRVB = malloc(sizeof(char)*3);
   }
+  
   char choixRVB;
   int adc = read_ADC();
   
@@ -90,11 +94,35 @@ void selection(){
 
   if(!etatPB()){
     if(!boutonAppuie){
-      commande_radio(choixRVB, etatRVB);
+      start = time(NULL);
     }
     boutonAppuie = true;
   }else{
     boutonAppuie = false;
+  }
+
+  if(start != -1 && !boutonAppuie){
+    end = time(NULL);
+    if(end-start >= 3){
+      printf("Turn off all tubes\n");
+      etatRVB[0] = 0;
+      etatRVB[1] = 0;
+      etatRVB[2] = 0;
+      commande_radio('R', etatRVB);
+      commande_radio('V', etatRVB);
+      commande_radio('B', etatRVB);
+    }else if(end-start >= 2){
+      printf("Turn on all tubes\n");
+      etatRVB[0] = 1;
+      etatRVB[1] = 1;
+      etatRVB[2] = 1;
+      commande_radio('R', etatRVB);
+      commande_radio('V', etatRVB);
+      commande_radio('B', etatRVB);
+    }else{
+      commande_radio(choixRVB, etatRVB);
+    }
+    start = -1;
   }
 }
 
