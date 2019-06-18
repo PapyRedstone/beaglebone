@@ -251,7 +251,7 @@ void trans_trame_433MHz(char maison, char objet, char activation, char repetitio
     trans_data_433MHz('S');
   }
 }
-<<<<<<< HEAD
+
 char* decimalNumberToBinaryString(unsigned int number){
   char binary[4];
   binary[3] = number >> 3 + 48;
@@ -262,7 +262,6 @@ char* decimalNumberToBinaryString(unsigned int number){
 }
 
 }
-=======
 
 void trans_trame2_433MHz(char maison, char objet, char activation, char repetition){
   char i;
@@ -287,4 +286,3 @@ void trans_trame2_433MHz(char maison, char objet, char activation, char repetiti
     trans_data_433MHz('S');
   }
 }
->>>>>>> 90773d63eaca9849881069b21c96a5f11785c00d
